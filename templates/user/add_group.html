@@ -1,0 +1,26 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+
+<form id="form1" name="form1" method="post" action="/myapp/user_add_group/#about" enctype="multipart/form-data">
+{% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th width="180px">Group name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" required class="form-control" /></td>
+    </tr>
+      <tr>
+          <td>Choose Image</td>
+          <td>
+              <input type="file" name="file" class="form-control">
+          </td>
+      </tr>
+
+    <tr>
+      <th>&nbsp;</th>
+      <td><input type="submit" name="button" id="button" value="Update" class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

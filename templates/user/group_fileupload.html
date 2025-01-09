@@ -1,0 +1,57 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+
+
+<form method="post" action="/myapp/group_fileuploadpost/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table table-bordered">
+
+        <tr>
+            <td width="130px">Choose Group</td>
+            <td>
+
+                <select class="form-control" name="grpid">
+
+                    {% for i in u %}
+                    <option value="{{ i.id }}">{{ i.grpname }}</option>
+
+                    {% endfor %}
+
+                </select>
+
+            </td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <td> File</td>
+            <td>
+                <input type="file" name="file2" required>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+
+            </td>
+            <td>
+
+                <input type="submit" class="btn btn-success" value="Upload">
+
+            </td>
+
+
+        </tr>
+
+
+
+    </table>
+
+
+</form>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+<body>
+
+<form method="post" action="/myapp/user_view_groups/">
+    {% csrf_token %}
+     <table class="pull-left">
+    <tr>
+
+
+
+         <td>
+            <input type="text" placeholder="Search by group name" name="t" class="form-control">
+        </td>
+        <td>
+            <input type="submit" value="Search" class="btn btn-success">
+        </td>
+    </tr>
+</table>
+</form>
+
+
+<br>
+
+
+
+
+
+
+    <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Sno</th>
+      <th>GroupName</th>
+      <th>CreatedBy</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+       {% for i in data %}
+        <td width="50px">{{ forloop.counter }}</td>
+        <td width="120px">{{  i.grpname }}</td>
+           <td>{%  if i.mecreated == "Yes" %} <a class="btn btn-danger" href="/myapp/deletegroup/{{ i.id }}">Delete</a> {% else %} Not Admin {% endif %}</td>
+       <td width="110px">{%  if i.mecreated == "Yes" %}<a href="/myapp/user_search_view_members/{{ i.id }}" class="btn btn-success">AddMember</a> {% else %} Not Admin {% endif %}</td>
+       <td width="110px"><a href="/myapp/user_view_grpmembers/{{ i.id }}" class="btn btn-success">ViewMember</a> </td>
+       <td width="110px"><a href="/myapp/group_view_files/{{ i.id }}" class="btn btn-warning">ViewFiles</a> </td>
+   </tr>
+{% endfor %}
+    <tr>
+
+  </tbody>
+</table>
+</body>
+{% endblock %}

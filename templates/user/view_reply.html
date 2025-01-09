@@ -1,0 +1,59 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+<body>
+
+<form method="post" action="/myapp/user_view_replysearch/">
+    {% csrf_token %}
+     <table class="pull-left">
+    <tr>
+        <td>From</td>
+        <td>
+            <input type="date" placeholder="Search here" name="f" class="form-control">
+        </td>
+        <td>To</td>
+         <td>
+            <input type="date" placeholder="Search here" name="t" class="form-control">
+        </td>
+        <td>
+            <input type="submit" value="Search" class="btn btn-success">
+        </td>
+    </tr>
+</table>
+</form>
+
+
+<br>
+
+
+
+
+
+
+    <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Sno</th>
+      <th>Date</th>
+      <th>Complaint</th>
+      <th>Status</th>
+      <th>Reply</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+       {% for i in var %}
+        <td width="50px">{{ forloop.counter }}</td>
+        <td width="120px">{{  i.date }}</td>
+           <td>{{ i.complaint }}</td>
+       <td width="110px">{{ i.status }}</td>
+           <td>{{ i.reply }}</td>
+   </tr>
+
+{% endfor %}
+    <tr>
+
+  </tbody>
+</table>
+</body>
+{% endblock %}

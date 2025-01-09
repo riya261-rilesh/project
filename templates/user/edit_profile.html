@@ -1,0 +1,112 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+
+<body>
+<form action="/myapp/view_edit_profile_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table class="table table-bordered">
+   <tr>
+            <td colspan="2">
+                <img src="{{ data.image }}" width="150px" height="150px">
+            </td>
+        </tr>
+  <tr>{% csrf_token %}
+    <td width="60">Name</td>
+    <td width="330">
+      <input class="form-control" required type="text" name="textfield" id="textfield" value="{{ data.name }}"  pattern="[A-Z a-z]+"/></td>
+  </tr>
+     <tr>
+    <td>Dob</td>
+    <td>
+      <input type="date" class="form-control" required name="textfield8" id="textfield8" value="{{ data.dob | date:'Y-m-d'}}"/></td>
+  </tr>
+  <tr>
+     <td>Gender</td>
+      <td><p>
+
+ <label>
+          <input type="radio" name="RadioGroup1" value="Male" id="RadioGroup1_1" {% if data.gender == 'Male' %}checked{% endif %} />
+          Male</label>
+        <br />        <label>
+          <input type="radio" name="RadioGroup1" value="Female" id="RadioGroup1_1"  {% if data.gender == 'Female' %}checked{% endif %} />
+          Female</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Other" id="RadioGroup1_2"  {% if data.gender == 'Other' %}checked{% endif %} />
+          Other</label>
+        <br />
+      </p></td>
+    </tr>
+  <tr>
+    <td>Email</td>
+    <td><label for="textfield2"></label>
+      <input type="email" name="textfield2" id="textfield2" value="{{ data.email }}" class="form-control" required/></td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td><label for="textfield3"></label>
+      <input type="text" name="textfield3" id="textfield3" class="form-control" required  value="{{ data.phone }}" pattern="[9876][0-9]{9}" max="10jjjh"/></td>
+  </tr>
+     <tr>
+    <td>HouseName</td>
+    <td>
+      <input type="text" name="textfield14" id="textfield14" value="{{ data.house_name }}"  class="form-control" required/></td>
+  </tr>
+  <tr>
+    <td>Place</td>
+    <td>
+      <input type="text" name="textfield4" id="textfield4" value="{{ data.place }}" class="form-control" required /></td>
+  </tr>
+  <tr>
+    <td>Post</td>
+    <td>
+      <input type="text" name="textfield5" id="textfield5" value="{{ data.post_name }}" class="form-control" required /></td>
+  </tr>
+  <tr>
+    <td>pin</td>
+    <td>
+      <input class="form-control" required type="text" name="textfield6" id="textfield6" value="{{ data.pin }}" pattern="[0-9]{6}" max="6"/></td>
+  </tr>
+{#  <tr>#}
+{#    <td>Pin</td>#}
+{#    <td><label for="textfield7"></label>#}
+{#      <input type="text" name="textfield7" id="textfield7" />#}
+{#      <label for="fileField"></label></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <td>Photo</td>#}
+{#    <td><label for="fileField"></label>#}
+{#      <input type="file" name="fileField" id="fileField" /></td>#}
+{#  </tr>#}
+
+{#  <tr>#}
+{#    <td height="94" colspan="2"><p>Authentication Type #}
+{#      <label for="select"></label>#}
+{#      <select name="select" id="select">#}
+{#        <option>Adhaar No</option>#}
+{#        <option>Pan Card</option>#}
+{#        <option>Passport</option>#}
+{#      </select>  #}
+{#      <label for="fileField2"></label>#}
+{#    </p>#}
+{#      <p>#}
+{#        <input type="file" name="fileField2" id="fileField2" />#}
+{#      </p></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <td colspan="2">Issued By #}
+{#      <label for="select2"></label>#}
+{#      <select name="select2" id="select2">#}
+{#        <option>Government of India</option>#}
+{#      </select></td>#}
+{#  </tr>#}
+
+  <tr>
+      <td></td>
+    <td><input type="submit" name="button" id="button" class="btn btn-success" value="Update" /></td>
+  </tr>
+</table>
+</form>
+
+</body>
+{% endblock %}

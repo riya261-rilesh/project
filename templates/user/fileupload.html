@@ -1,0 +1,70 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+
+
+<form method="post" action="/myapp/fileuploadpost/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table table-bordered">
+
+        <tr>
+            <td width="180px">Choose User</td>
+            <td>
+
+                <select class="form-control" name="user">
+
+                    {% for i in u %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+
+                    {% endfor %}
+
+                </select>
+
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>Choose Image File for key generation</td>
+            <td>
+                <input type="file" name="file" required class="form-control">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Give a narration to remind the image</td>
+            <td>
+                <input type="text" name="narration" class="form-control" required>
+            </td>
+        </tr>
+
+        <tr>
+            <td> File</td>
+            <td>
+                <input type="file" name="file2" class="form-control" required>
+            </td>
+        </tr>
+
+
+        <tr>
+
+            <td>
+
+            </td>
+            <td>
+
+                <input type="submit" class="btn btn-success" value="Upload">
+
+            </td>
+
+
+        </tr>
+
+
+
+    </table>
+
+
+</form>
+{% endblock %}

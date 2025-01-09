@@ -1,0 +1,45 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+<form method="post" action="/myapp/group_download_filepost/" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    <input type="hidden" name="id" value="{{ id }}">
+
+    <table class="table table-bordered">
+        <tr>
+            <td>Choose Image File for key generation</td>
+            <td>
+                <input type="file" name="file" class="form-control" required>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Key</td>
+            <td>
+                <input type="text" name="pubkey" class="form-control" required>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+
+            </td>
+            <td>
+
+                <input type="submit" value="Upload" class="btn btn-success">
+
+            </td>
+
+
+        </tr>
+
+
+
+    </table>
+
+
+</form>
+{% endblock %}

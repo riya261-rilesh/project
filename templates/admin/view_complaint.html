@@ -1,0 +1,65 @@
+{% extends 'admin/adminindex.html' %}
+{% block body %}
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+<body>
+
+    <form method="post" action="/myapp/admin_view_complaints_search/#about">
+    {% csrf_token %}
+
+
+<div class="container ">
+<br>
+<table class="pull-left">
+    <tr>
+        <td>From</td>
+        <td>
+            <input type="date" placeholder="Search here" name="f" class="form-control" required>
+        </td>
+        <td>To</td>
+         <td>
+            <input type="date" placeholder="Search here" name="t" class="form-control" required>
+        </td>
+        <td>
+            <input type="submit" value="Search" class="btn btn-success">
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+
+    <table class="table table-bordered" >
+    <tr>
+        <th>SNo</th>
+        <th>Date</th>
+        <th>From</th>
+        <th>Complaint</th>
+
+<th >Status</th>
+
+         <th >Reply</th>
+
+    </tr>
+        {% for i in var %}
+        <tr>
+    <td width="50px" >{{ forloop.counter }}</td>
+          <td width="110px" >{{ i.date }}</td>
+    <td>{{ i.USER.name }}</td>
+    <td>{{ i.complaint}}</td>
+ <th>{{ i.status }}</th>
+    <td>{% if i.status == 'pending' %}<a class="btn btn-success" href="/myapp/complaint_reply/{{ i.id }}#about">reply</a> {% else %}{{ i.reply }}{% endif %}</td>
+
+
+    </tr>
+    {% endfor %}
+    </table>
+
+</div>
+    </form>
+</body>
+{% endblock %}

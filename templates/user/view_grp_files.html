@@ -1,0 +1,58 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+<body>
+
+<form method="post" action="/myapp/user_view_sentfiles_search/">
+    {% csrf_token %}
+     <table class="pull-left">
+    <tr>
+        <td>From</td>
+        <td>
+            <input type="date" placeholder="Search here" name="fd" class="form-control">
+        </td>
+        <td>To</td>
+         <td>
+            <input type="date" placeholder="Search here" name="td" class="form-control">
+        </td>
+        <td>
+            <input type="submit" value="Search" class="btn btn-success">
+        </td>
+    </tr>
+</table>
+</form>
+
+
+<br>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Sno</th>
+      <th>Date</th>
+      <th>UploadedBY</th>
+      <th>File</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+       {% for i in data %}
+        <td width="50px">{{ forloop.counter }}</td>
+        <td width="120px">{{  i.date }}</td>
+           <td>{{ i.USER.name }}<br>
+           {{ i.USER.email }}<br>
+           {{ i.USER.phone }}<br>
+           </td>
+       <td width="110px">{{ i.originalfilename }}</td>
+           <td><a href="/myapp/group_download_files/{{ i.id }}/{{ i.GROUP.id }}">Download</a> </td>
+   </tr>
+
+{% endfor %}
+    <tr>
+
+  </tbody>
+</table>
+</body>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="/myapp/use_search_view_members/">
+{% csrf_token %}
+<table class="pull-left">
+    <tr>
+        <td><input type="text" name="search" placeholder="User name...." class="form-control"></td>
+        <td><input type="submit" value="search" class="btn btn-info"> </td>
+    </tr>
+</table>
+<br>
+<br>
+  <table class="table table-bordered">
+    <tr>
+      <th>Sl .no</th>
+      <th>Name</th>
+      <th>Dob</th>
+      <th>Gender</th>
+      <th>Gmail</th>
+      <th>Phone </th>
+      <th>Address</th>
+        <th></th>
+    </tr>
+
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.name}}</td>
+      <td>&nbsp;{{ i.dob }}</td>
+      <td>&nbsp;&nbsp;{{ i.gender }}</td>
+      <td>&nbsp;&nbsp;{{ i.email }}</td>
+      <td>&nbsp;&nbsp;{{ i.phone }}</td>
+      <td>{{ i.house_name }}<br>{{ i.place }}<br>{{ i.post_name }}<br>{{ i.pin }}</td>
+    <td>
+        <a href="/myapp/addtogrp/{{ i.id }}" class="btn btn-success">AddAsMember</a>
+    </td>
+
+    </tr>
+      {% endfor %}
+  </table>
+
+</form>
+
+{% endblock %}

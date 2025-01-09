@@ -1,0 +1,43 @@
+{% extends 'user/userindex.html' %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="/myapp/user_view_grpmembers_post/">
+{% csrf_token %}
+<table class="pull-left">
+    <tr>
+        <td><input type="text" name="search" placeholder="User name...." class="form-control"></td>
+        <td><input type="submit" value="search" class="btn btn-info"> </td>
+    </tr>
+</table>
+<br>
+<br>
+  <table class="table table-bordered">
+    <tr>
+      <th>Sl .no</th>
+      <th>Name</th>
+      <th>Dob</th>
+      <th>Gender</th>
+      <th>Gmail</th>
+      <th>Phone </th>
+      <th>Address</th>
+
+    </tr>
+
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.USER.name}}</td>
+      <td>&nbsp;{{ i.USER.dob }}</td>
+      <td>&nbsp;&nbsp;{{ i.USER.gender }}</td>
+      <td>&nbsp;&nbsp;{{ i.USER.email }}</td>
+      <td>&nbsp;&nbsp;{{ i.USER.phone }}</td>
+      <td>{{ i.USER.house_name }}<br>{{ i.USER.place }}<br>{{ i.USER.post_name }}<br>{{ i.USER.pin }}</td>
+
+
+    </tr>
+      {% endfor %}
+  </table>
+
+</form>
+
+{% endblock %}
